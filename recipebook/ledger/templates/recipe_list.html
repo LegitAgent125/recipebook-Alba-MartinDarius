@@ -5,8 +5,8 @@
 </head>
 <body>
     <h1>Recipe Book</h1>
-    <a href="http://127.0.0.1:8000/ledger/recipe/1">Go to recipe 1!</a> <!-- http://w3schools.com/html/html_links.asp -->
-    <br>
-    <a href="http://127.0.0.1:8000/ledger/recipe/2">Go to recipe 2!</a>
+    {% for recipe in object_list %}
+        <li><a href="{{recipe.get_absolute_url}}"> {{recipe.name}}</a></li> <!-- http://w3schools.com/html/html_links.asp -->
+    {% endfor %}
 </body>
 </html>
