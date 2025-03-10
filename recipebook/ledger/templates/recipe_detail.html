@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{recipe.name}}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+    {% block title %} {{recipe.name}} {% endblock %}
+
+    {% block content%}
     <h1>{{recipe.name}}</h1>
+    <h2> Made by : {{recipe.author}} </h2>
     {% for ingredient in recipe.ingredients.all %}
         <li>{{ ingredient.quantity }} of {{ ingredient.ingredient.name }}</li>
     {% endfor %}
     <br>
-    <a href="http://127.0.0.1:8000/recipes/list">Back</a>
-</body>
-</html>
+    <a href="{% url "ledger:recipes/list" %}"class = "button">Back</a>
+{% endblock %}

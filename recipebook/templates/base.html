@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{% block title %}Recipe Book{% endblock %}</title>
+        {% block styles %}
+        <!-- Styles Here  -->
+        {% endblock %}
+    </head>
+    
+    <body>
+        <header>
+            <h1>Recipe Book</h1>
+            {% if request.user.is_authenticated %}
+                <form method="POST" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% endif %}
+        </header>
+
+        <main>
+        {% block content %}
+        <!-- Body Here  -->
+        {% endblock %}
+        </main>
+    </body>
+</html>
