@@ -3,11 +3,17 @@
     {% block title %} {{recipe.name}} {% endblock %}
 
     {% block content%}
-    <h1>{{recipe.name}}</h1>
-    <h2> Made by : {{recipe.author}} </h2>
-    {% for ingredient in recipe.ingredients.all %}
-        <li>{{ ingredient.quantity }} of {{ ingredient.ingredient.name }}</li>
-    {% endfor %}
-    <br>
-    <a href="{% url "ledger:recipes/list" %}"class = "button">Back</a>
+        {% if request.user.is_authenticated %}
+            <h1>{{recipe.name}}</h1>
+            <h2> Made by : {{recipe.author}} </h2>
+            {% for ingredient in recipe.ingredients.all %}
+                <li>{{ ingredient.quantity }} of {{ ingredient.ingredient.name }}</li>
+            {% endfor %}
+            <br>
+            <a href="{% url "ledger:recipes/list" %}"class = "button">Back</a>
+            {% else %}
+                <a href="{% url 'login' %}">
+                    Login
+                </a>
+        {% endif %}
 {% endblock %}
