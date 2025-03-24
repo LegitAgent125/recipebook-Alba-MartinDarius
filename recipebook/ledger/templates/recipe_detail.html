@@ -6,9 +6,20 @@
         {% if request.user.is_authenticated %}
             <h1>{{recipe.name}}</h1>
             <h2> Made by : {{recipe.author}} </h2>
+
+            <h3> Images </h3>
+            {% for image in recipe.images.all %}
+                <img src="{{ image.image.url }}" alt="{{ image.description }}" widht='300' height='300'>
+                <p>Description: {{ image.description }}</p>
+            {% endfor %}
+            
+            <h3> Ingredients </h3>
             {% for ingredient in recipe.ingredients.all %}
                 <li>{{ ingredient.quantity }} of {{ ingredient.ingredient.name }}</li>
             {% endfor %}
+
+            <a href="{% url 'ledger:upload_recipe_img' recipe.pk %}">Upload New Image</a>
+
             <br>
             <a href="{% url "ledger:recipes/list" %}"class = "button">Back</a>
             {% else %}

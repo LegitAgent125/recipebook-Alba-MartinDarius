@@ -38,6 +38,15 @@ class RecipeIngredient(models.Model):
         related_name="ingredients"
     )   
 
+class RecipeImage(models.Model):
+    image = models.ImageField(null=True, upload_to='recipe_images/')
+    description = models.CharField(max_length=255)
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        related_name="images"
+    )
+
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)

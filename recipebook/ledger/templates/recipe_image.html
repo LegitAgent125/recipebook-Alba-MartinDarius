@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+    {% block title %} Image Addition {% endblock %}
+
+    {% block content%}
+        {% if request.user.is_authenticated %}
+            <h1>Add a New Image for the Recipe {{ recipe.name }}</h1>
+            <form method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit">
+                    Upload
+                </button>
+            </form>
+
+            <a href="{% url 'ledger:recipe/detail' recipe.pk %}"> Back to Recipes </a>
+        {% endif %}
+{% endblock %}

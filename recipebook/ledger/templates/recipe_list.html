@@ -17,6 +17,9 @@
             <p> Created on : {{recipe.created_on}} </p>
             <p> Last Updated on : {{recipe.updated_on}} </p>
         {% endfor %}
+
+        <a href="{% url 'ledger:recipe/add' %}">Add New Recipe</a>
+
     {% else %}
         <a href="{% url 'login' %}">
             Login
